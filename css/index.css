@@ -1,0 +1,6 @@
+body {background-color: lemonchiffon;
+color: lightslategrey;}
+
+.time {font-size: 10px;
+font-family: Arial, Helvetica, sans-serif;
+grid-auto-rows: minmax();}
