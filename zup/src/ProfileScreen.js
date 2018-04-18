@@ -5,7 +5,7 @@ const sups = [
     { id: 1, author: 'Dylan', body: 'Lorem ipsum', time: new Date(), image: "#" },
     { id: 2, author: 'Roaper', body: 'SIIIINF', time: new Date(), image: "#" },
     { id: 3, author: 'Minna', body: 'Ding dong', time: new Date(), image: "#" },
-    { id: 4, author: 'Joker', body: 'FEEEEEE', time: new Date(), image: "../images/illia.jpg" }
+    { id: 4, author: 'Joker', body: 'FEEEEEE', time: new Date(), image: "#" }
 ]
 
 let ProfileScreen = ({match}) => { 
@@ -21,3 +21,6 @@ let filterSups = (sups, userName) => {
 }
 
 export default ProfileScreen
+
+
+///ADDING BRANCH
