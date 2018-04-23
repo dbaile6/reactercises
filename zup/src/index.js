@@ -1,23 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import AllUsersScreen from './AllUsersScreen';
-import ProfileScreen from './ProfileScreen';
-import Homepage from './Homepage';
-import {HashRouter as Router, Route, NavLink} from 'react-router-dom';
 
-let TopLevel = () => 
- <Router>
-    <div>
-        <nav id="nav">
-            <NavLink to="/">*Home*</NavLink>
-            <NavLink to="/users">*All Users*</NavLink>
-            <NavLink to="/users/Dylan">*User Profile*</NavLink>
-        </nav>
-        <Route path="/" exact component={Homepage} />
-        <Route path="/users" exact component={AllUsersScreen} />
-        <Route path="/users/:id" exact component={ProfileScreen} />
-    </div>
-</Router>
-   
-ReactDOM.render(<TopLevel />, document.getElementById('root'));
+import { createStore } from 'redux';
+import { connect, Provider } from 'react-redux';
+
+import { createSup } from './actions/sups';
+import reducer from './reducers';
+
+let store = createStore(reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+let ScreenDumb = ({ sups, dispatch }) =>
+  <div>
+    <p>{sups.toString()}</p>
+    <button onClick={() => dispatch(createSup('Hi there!'))}>
+      Click Me!
+    </button>
+  </div>
+
+let mapStateToProps = (state) => {
+  return { sups: state.sups };
+};
+
+let mapDispatchToProps = (dispatch) => {
+  return { dispatch: dispatch };
+};
+
+let Screen = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ScreenDumb);
+
+let ui =
+  <Provider store={store}>
+    <Screen />
+  </Provider>
+
+ReactDOM.render(ui, document.getElementById('root'));
